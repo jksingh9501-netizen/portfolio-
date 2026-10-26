@@ -497,7 +497,7 @@ h2 em { font-weight: 500; }
   .about-note { right: 7%; bottom: 2%; font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .transition-cloud, .about-scroll-hint span { animation: none !important; }
+  .cloud-transition::before, .cloud-transition::after, .about-scroll-hint span { animation: none !important; }
   .identity-card { transition: none !important; }
 }
 
