@@ -51,17 +51,38 @@
       <a class="scroll-cue" href="#about"><span>Scroll to explore</span><b aria-hidden="true">↓</b></a>
     </section>
 
-    <!-- ABOUT: replace the image path with your final studio scene. -->
+    <!-- ABOUT: clouds connect the hero to the interactive profile-card world. -->
     <section class="about section-dark" id="about" aria-labelledby="about-title">
-      <div class="about-photo" data-depth="0.08" role="img" aria-label="Creative studio scene placeholder"></div>
+      <div class="about-photo" data-depth="0.08" role="img" aria-label="Dreamy sky and clouds"></div>
       <div class="about-shade" aria-hidden="true"></div>
-      <div class="about-copy reveal">
-        <p class="eyebrow"><span></span> ABOUT</p>
-        <h2 id="about-title">Hi, I'm<br>Manpreet <span class="star">✳</span></h2>
-        <p>I'm a UI/UX designer and illustrator who loves turning ideas into visual stories. I care about clean design, creative chaos, meaningful details and a little bit of pixel magic.</p>
-        <a class="pill-link" href="#work">A little more about me <span aria-hidden="true">↗</span></a>
+      <div class="cloud-transition" aria-hidden="true">
+        <img class="transition-cloud transition-cloud-back" src="assets/cloud.png" alt="">
+        <img class="transition-cloud transition-cloud-front" src="assets/cloud.png" alt="">
       </div>
-      <p class="about-note hand-note" aria-hidden="true">Good design<br>takes time ♡</p>
+      <div class="about-intro reveal">
+        <p class="eyebrow"><span></span> A LITTLE ABOUT ME</p>
+        <h2 id="about-title">More than<br><em>pixels.</em> <span class="star">✳</span></h2>
+        <p>A curious creative, collecting skills, stories and tiny details that make design feel human.</p>
+        <p class="about-scroll-hint">Scroll to unfold my world <span aria-hidden="true">↓</span></p>
+      </div>
+      <div class="identity-deck" aria-label="Manpreet profile cards">
+        <button class="identity-card card-about" type="button" aria-expanded="false" aria-controls="details-about">
+          <span class="card-index">01 / THE PERSON</span><span class="card-symbol" aria-hidden="true">✳</span>
+          <span class="card-title">A little<br><em>about me.</em></span><span class="card-teaser">The mind behind the pixels <span aria-hidden="true">↗</span></span>
+          <span class="card-detail" id="details-about" hidden><span class="detail-label">HELLO, I’M MANPREET</span><span class="detail-copy">I’m a creative student exploring the meeting point of design, technology and emotion. I love thoughtful visuals, playful ideas and details that make an experience memorable.</span><span class="detail-foot">Curious by nature. Always learning.</span></span>
+        </button>
+        <button class="identity-card card-skills" type="button" aria-expanded="false" aria-controls="details-skills">
+          <span class="card-index">02 / THE TOOLKIT</span><span class="card-symbol" aria-hidden="true">◇</span>
+          <span class="card-title">Things I<br><em>create with.</em></span><span class="card-teaser">My growing creative toolkit <span aria-hidden="true">↗</span></span>
+          <span class="card-detail" id="details-skills" hidden><span class="detail-label">SKILLS I’M BUILDING</span><span class="skill-chips"><span>UI/UX</span><span>Figma</span><span>Illustrator</span><span>Photoshop</span><span>Graphic Design</span><span>Web Design</span><span>HTML &amp; CSS</span><span>Motion Basics</span><span>Content Creation</span></span><span class="detail-foot">A toolkit in progress, not a finished list.</span></span>
+        </button>
+        <button class="identity-card card-education" type="button" aria-expanded="false" aria-controls="details-education">
+          <span class="card-index">03 / THE JOURNEY</span><span class="card-symbol" aria-hidden="true">✎</span>
+          <span class="card-title">Learning<br><em>as I go.</em></span><span class="card-teaser">My education &amp; next steps <span aria-hidden="true">↗</span></span>
+          <span class="card-detail" id="details-education" hidden><span class="detail-label">MY LEARNING JOURNEY</span><span class="detail-copy">I’m studying Content Creation at MAAC, building a foundation across visual design, UI/UX and digital media while turning class projects into creative experiments.</span><span class="detail-foot">Currently exploring: interaction design, web experiences and motion.</span></span>
+        </button>
+      </div>
+      <p class="about-note hand-note" aria-hidden="true">Little by little,<br>ideas take shape ♡</p>
     </section>
 
     <!-- WORK: the central, most interactive section. Replace each image with your work. -->
