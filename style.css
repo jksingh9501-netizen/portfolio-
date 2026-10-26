@@ -57,21 +57,35 @@ img { display: block; max-width: 100%; }
 }
 .hero-sky {
   z-index: -5; background:
-    linear-gradient(180deg, rgba(35,39,43,.22), transparent 45%, rgba(32,24,21,.35)),
-    url("assets/hero-skyline.jpg") center 54% / cover no-repeat,
+    linear-gradient(180deg, rgba(20,20,20,.08), transparent 48%, rgba(20,18,17,.12)),
+    url("assets/hero-bg.png") center center / cover no-repeat,
     linear-gradient(135deg, #59616a 0%, #b18a78 46%, #e9ae7e 72%, #383c40 100%);
-  transform: scale(1.08);
+  transform: scale(1.04);
 }
 .hero-glow {
   z-index: -4; background: radial-gradient(ellipse at 78% 55%, rgba(255,193,124,.48), transparent 32%),
     linear-gradient(180deg, transparent 55%, rgba(18,18,17,.24));
   mix-blend-mode: screen;
 }
-.hero-city {
-  z-index: -3; inset: auto 0 0; height: 42%; opacity: .76;
-  background: url("assets/hero-city.png") center bottom / cover no-repeat;
-}
+.hero-city { display: none; }
 .hero-vignette { z-index: -1; background: linear-gradient(90deg, rgba(17,18,17,.35), transparent 22%, transparent 76%, rgba(17,18,17,.22)), linear-gradient(0deg, rgba(17,17,16,.4), transparent 25%); }
+/* Uploaded transparent assets: independent layers over the composite hero artwork. */
+.hero-floating-objects {
+  position: absolute; z-index: 2; pointer-events: none;
+  width: clamp(180px, 24vw, 350px); height: auto; object-fit: contain;
+  right: clamp(12px, 7vw, 105px); bottom: 8%;
+  filter: drop-shadow(0 18px 22px rgba(20,16,12,.18));
+}
+.hero-camera {
+  position: absolute; z-index: 3; pointer-events: none;
+  width: clamp(90px, 13vw, 185px); height: auto; object-fit: contain;
+  left: clamp(12px, 8vw, 115px); bottom: 13%;
+  filter: drop-shadow(0 14px 18px rgba(20,16,12,.24));
+}
+/* The hero-bg artwork already includes these, so avoid drawing them twice. */
+.hero .hero-title, .hero .character-wrap, .hero .note-left, .hero .note-right,
+.hero .hero-leaves, .hero .floating-frame { display: none; }
+
 .hero-title {
   z-index: 1; position: absolute; top: 32%; left: 50%; width: max-content; max-width: 100%;
   margin: 0; transform: translate(-50%, -2%); color: #f8eee0;
@@ -240,6 +254,8 @@ h2 em { font-weight: 500; }
   .hero { min-height: 760px; }
   .hero-title { top: 35%; font-size: clamp(76px, 16vw, 150px); }
   .character-wrap { width: 52vw; height: 67%; }
+  .hero-floating-objects { width: clamp(190px, 30vw, 290px); right: 2%; bottom: 9%; }
+  .hero-camera { width: clamp(100px, 17vw, 155px); left: 2%; bottom: 12%; }
   .note-left { left: 4%; } .note-right { right: 3%; }
   .about { min-height: 520px; }
   .about-copy { width: 47%; }
@@ -268,6 +284,8 @@ h2 em { font-weight: 500; }
   .hero-title { top: 37%; font-size: clamp(60px, 17vw, 105px); letter-spacing: -.075em; }
   .character-wrap { width: 76vw; height: 61%; bottom: 5%; }
   .character-placeholder { height: 300px; width: 190px; }
+  .hero-floating-objects { width: 42vw; right: -2%; bottom: 13%; }
+  .hero-camera { width: 27vw; left: -2%; bottom: 16%; }
   .note-left, .note-right { font-size: 11px; top: 22%; }
   .note-left { left: 5%; } .note-right { top: 29%; right: 4%; }
   .frame-one { top: 17%; left: 27%; width: 34px; height: 50px; border-width: 3px; }
