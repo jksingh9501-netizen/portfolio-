@@ -32,32 +32,16 @@
   </header>
 
   <main>
-    <!-- HERO: each data-depth layer moves at a different speed. -->
+    <!-- HERO: the supplied artwork is the main scene; transparent PNGs move as separate layers. -->
     <section class="hero" id="home" aria-labelledby="hero-title">
+      <!-- The uploaded hero artwork already contains the character and typography. -->
       <div class="hero-sky" data-depth="0.08" aria-hidden="true"></div>
       <div class="hero-glow" data-depth="0.13" aria-hidden="true"></div>
-      <div class="hero-city" data-depth="0.2" aria-hidden="true"></div>
       <div class="hero-vignette" aria-hidden="true"></div>
-      <div class="hero-leaves hero-leaves-left" data-depth="0.34" aria-hidden="true">✦</div>
-      <div class="hero-leaves hero-leaves-right" data-depth="0.28" aria-hidden="true">✧</div>
 
-      <p class="hand-note note-left" data-depth="0.18">Creative mind<br>Design heart<br>Pixel soul <span>♡</span></p>
-      <p class="hand-note note-right" data-depth="0.22">Turning ideas<br>into visual stories <span>✧</span></p>
-
-      <h1 class="hero-title" id="hero-title" data-depth="0.1">MANPREET</h1>
-
-      <!-- Add your transparent character render at assets/manpreet-hero.png. -->
-      <div class="character-wrap" data-depth="0.42">
-        <img class="hero-character" src="assets/manpreet-hero.png" alt="Manpreet's chibi character wearing her black hoodie, cargo trousers and clear glasses" onerror="this.style.display='none'; this.nextElementSibling.hidden=false">
-        <div class="character-placeholder" hidden aria-hidden="true">
-          <span>YOUR CHARACTER</span>
-          <small>assets/manpreet-hero.png</small>
-        </div>
-      </div>
-
-      <!-- Decorative assets can be swapped for real project photographs later. -->
-      <div class="floating-frame frame-one" data-depth="0.3" aria-hidden="true"><span>✳</span></div>
-      <div class="floating-frame frame-two" data-depth="0.24" aria-hidden="true"><span>✦</span></div>
+      <!-- Transparent PNGs float independently for a little parallax depth. -->
+      <img class="hero-floating-objects" src="assets/floating-objects.png" alt="" data-depth="0.3" aria-hidden="true">
+      <img class="hero-camera" src="assets/camera.png" alt="" data-depth="0.38" aria-hidden="true">
       <div class="hero-caption">UI/UX Designer <i>•</i> Illustrator <i>•</i> Creative Thinker</div>
       <a class="scroll-cue" href="#about"><span>Scroll to explore</span><b aria-hidden="true">↓</b></a>
     </section>
@@ -124,7 +108,7 @@
           <div class="project-meta"><div><span class="project-number">06 / PACKAGING</span><h3>Objects with a Story</h3></div><span class="project-arrow" aria-hidden="true">↗</span></div>
         </a>
       </div>
-      <p class="work-footnote">These are visual placeholders, not finished case studies. Your real projects will take their place when you add the assets.</p>
+      <p class="work-footnote">Project-card artwork is still illustrative until you upload your final website screenshots and graphic-design images.</p>
     </section>
 
     <!-- SKILLS: progress bars are visual summaries, not test scores. -->
