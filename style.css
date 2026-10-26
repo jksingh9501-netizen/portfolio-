@@ -84,14 +84,14 @@ img { display: block; max-width: 100%; }
   filter: drop-shadow(0 14px 18px rgba(20,16,12,.24));
 }
 /* The main PNG already contains the character and typography. */
-.hero .hero-title, .hero .character-wrap, .hero .note-left, .hero .note-right,
+.hero .character-wrap, .hero .note-left, .hero .note-right,
 .hero .hero-leaves, .hero .floating-frame { display: none; }
 
 .hero-title {
-  z-index: 1; position: absolute; top: 32%; left: 50%; width: max-content; max-width: 100%;
+  z-index: 1; position: absolute; top: 29%; left: 50%; width: max-content; max-width: none;
   margin: 0; transform: translate(-50%, -2%); color: #f8eee0;
-  font: 600 clamp(76px, 15.2vw, 230px)/.85 var(--serif); letter-spacing: -.065em;
-  white-space: nowrap; text-shadow: 0 3px 24px rgba(32,22,18,.1); pointer-events: none;
+  font: 600 clamp(100px, 19vw, 290px)/.82 var(--serif); letter-spacing: -.075em;
+  white-space: nowrap; text-shadow: 0 3px 24px rgba(32,22,18,.12); pointer-events: none;
 }
 .character-wrap {
   position: absolute; z-index: 3; width: clamp(250px, 35vw, 510px); height: 75%;
@@ -253,7 +253,7 @@ h2 em { font-weight: 500; }
 @media (max-width: 900px) {
   :root { --page-pad: 30px; }
   .hero { min-height: 760px; }
-  .hero-title { top: 35%; font-size: clamp(76px, 16vw, 150px); }
+  .hero-title { top: 31%; font-size: clamp(92px, 17vw, 190px); }
   .character-wrap { width: 52vw; height: 67%; }
   .hero-main-art { width: min(110vw, 1050px); max-height: 94%; bottom: 0; }
   .hero-camera { width: clamp(100px, 16vw, 150px); left: 70%; top: 13%; }
@@ -282,7 +282,7 @@ h2 em { font-weight: 500; }
   .main-nav.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
   .nav-link { font: 500 28px var(--serif); }
   .hero { min-height: 720px; min-height: 100svh; }
-  .hero-title { top: 37%; font-size: clamp(60px, 17vw, 105px); letter-spacing: -.075em; }
+  .hero-title { top: 30%; font-size: clamp(58px, 18vw, 110px); letter-spacing: -.075em; }
   .character-wrap { width: 76vw; height: 61%; bottom: 5%; }
   .character-placeholder { height: 300px; width: 190px; }
   .hero-main-art { width: 145vw; max-height: 86%; bottom: 0; }
