@@ -72,18 +72,18 @@ img { display: block; max-width: 100%; }
 /* Main hero PNG: notebook + character stay together as the visual centerpiece. */
 .hero-main-art {
   position: absolute; z-index: 2; pointer-events: none;
-  width: min(96vw, 1320px); max-height: 96%; height: auto;
+  width: min(92vw, 1240px); max-height: 92%; height: auto;
   object-fit: contain; object-position: center bottom;
-  left: 50%; bottom: 0; transform: translateX(-50%);
+  left: 50%; bottom: 0; transform: translateX(-50%) scale(.88); transform-origin: center bottom;
   filter: drop-shadow(0 22px 26px rgba(20,16,12,.2));
-  animation: artwork-rise 1.45s cubic-bezier(.16,1,.3,1) .12s both;
+  animation: artwork-rise 1.5s cubic-bezier(.16,1,.3,1) .12s both;
 }
 .hero-camera {
   position: absolute; z-index: 3; pointer-events: none;
   width: clamp(95px, 13vw, 175px); height: auto; object-fit: contain;
   left: 68%; top: 12%;
   filter: drop-shadow(0 14px 18px rgba(20,16,12,.24));
-  animation: artwork-rise 1.35s cubic-bezier(.16,1,.3,1) .32s both;
+  animation: camera-rise 1.35s cubic-bezier(.16,1,.3,1) .32s both;
 }
 
 /* Hero entrance: name descends from above while the artwork rises from below. */
@@ -92,8 +92,12 @@ img { display: block; max-width: 100%; }
   to { opacity: 1; transform: translate(-50%, -2%); }
 }
 @keyframes artwork-rise {
-  from { opacity: .35; transform: translate(-50%, 115%); }
-  to { opacity: 1; transform: translate(-50%, 0); }
+  from { opacity: .35; transform: translate(-50%, 115%) scale(1.08); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(.88); }
+}
+@keyframes camera-rise {
+  from { opacity: .35; transform: translateY(115%); }
+  to { opacity: 1; transform: translateY(0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-title, .hero-main-art, .hero-camera { animation: none !important; }
@@ -273,7 +277,7 @@ h2 em { font-weight: 500; }
   .hero { min-height: 760px; }
   .hero-title { top: 31%; font-size: clamp(92px, 17vw, 190px); }
   .character-wrap { width: 52vw; height: 67%; }
-  .hero-main-art { width: min(110vw, 1050px); max-height: 94%; bottom: 0; }
+  .hero-main-art { width: min(105vw, 1000px); max-height: 90%; bottom: 0; }
   .hero-camera { width: clamp(100px, 16vw, 150px); left: 70%; top: 13%; }
   .note-left { left: 4%; } .note-right { right: 3%; }
   .about { min-height: 520px; }
@@ -303,7 +307,7 @@ h2 em { font-weight: 500; }
   .hero-title { top: 30%; font-size: clamp(58px, 18vw, 110px); letter-spacing: -.075em; }
   .character-wrap { width: 76vw; height: 61%; bottom: 5%; }
   .character-placeholder { height: 300px; width: 190px; }
-  .hero-main-art { width: 145vw; max-height: 86%; bottom: 0; }
+  .hero-main-art { width: 125vw; max-height: 82%; bottom: 0; }
   .hero-camera { width: 25vw; left: 70%; top: 17%; }
   .note-left, .note-right { font-size: 11px; top: 22%; }
   .note-left { left: 5%; } .note-right { top: 29%; right: 4%; }
