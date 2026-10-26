@@ -381,14 +381,54 @@ h2 em { font-weight: 500; }
 .about-intro > p:not(.eyebrow) { max-width: 340px; color: #f0e9df; font-size: 13px; line-height: 1.9; }
 .about-scroll-hint { margin-top: 35px; font-size: 10px !important; letter-spacing: .08em; text-transform: uppercase; opacity: .8; }
 .about-scroll-hint span { display: inline-block; margin-left: 9px; animation: bob 1.8s ease-in-out infinite; }
-.cloud-transition { position: absolute; z-index: 4; inset: 0; overflow: hidden; pointer-events: none; }
-.transition-cloud { position: absolute; width: clamp(360px, 58vw, 850px); max-width: none; height: auto; opacity: 0; }
-.transition-cloud-back { left: -20%; top: -9%; }
-.transition-cloud-front { right: -22%; top: -3%; width: clamp(330px, 49vw, 720px); }
-.about.is-visible .transition-cloud-back { animation: cloud-drift-in 1.8s cubic-bezier(.2,.7,.2,1) both; }
-.about.is-visible .transition-cloud-front { animation: cloud-drift-in-right 2s cubic-bezier(.2,.7,.2,1) .12s both; }
-@keyframes cloud-drift-in { from { opacity: 0; transform: translate(-25%, -30%) rotate(-8deg); } to { opacity: .9; transform: translate(0, 0) rotate(0); } }
-@keyframes cloud-drift-in-right { from { opacity: 0; transform: translate(28%, -25%) rotate(8deg); } to { opacity: .82; transform: translate(0, 0) rotate(0); } }
+.cloud-transition {
+  position: absolute; z-index: 1; inset: 0; overflow: hidden; pointer-events: none;
+}
+/* The clouds are drawn in CSS, so there is no hard-edged or mismatched PNG. */
+.cloud-transition::before,
+.cloud-transition::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 78%;
+  height: 48%;
+  filter: blur(14px);
+  opacity: 0;
+  background:
+    radial-gradient(ellipse at 13% 67%, rgba(246,251,253,.88) 0 12%, transparent 31%),
+    radial-gradient(ellipse at 29% 40%, rgba(250,252,251,.94) 0 15%, transparent 34%),
+    radial-gradient(ellipse at 46% 64%, rgba(240,248,251,.86) 0 18%, transparent 38%),
+    radial-gradient(ellipse at 64% 43%, rgba(255,250,243,.78) 0 13%, transparent 32%),
+    radial-gradient(ellipse at 82% 67%, rgba(232,244,249,.82) 0 17%, transparent 35%);
+}
+.cloud-transition::before {
+  left: -10%; top: -12%;
+}
+.cloud-transition::after {
+  right: -13%; top: -5%;
+  transform: rotate(180deg);
+  filter: blur(18px);
+  background:
+    radial-gradient(ellipse at 13% 67%, rgba(236,248,252,.8) 0 12%, transparent 31%),
+    radial-gradient(ellipse at 29% 40%, rgba(252,253,250,.9) 0 15%, transparent 34%),
+    radial-gradient(ellipse at 46% 64%, rgba(242,249,250,.84) 0 18%, transparent 38%),
+    radial-gradient(ellipse at 64% 43%, rgba(255,247,237,.72) 0 13%, transparent 32%),
+    radial-gradient(ellipse at 82% 67%, rgba(230,243,249,.78) 0 17%, transparent 35%);
+}
+.about.is-visible .cloud-transition::before {
+  animation: cloud-drift-in 1.8s cubic-bezier(.2,.7,.2,1) both;
+}
+.about.is-visible .cloud-transition::after {
+  animation: cloud-drift-in-right 2s cubic-bezier(.2,.7,.2,1) .12s both;
+}
+@keyframes cloud-drift-in {
+  from { opacity: 0; transform: translate(-13%, -18%) scale(.94); }
+  to { opacity: .9; transform: translate(0, 0) scale(1); }
+}
+@keyframes cloud-drift-in-right {
+  from { opacity: 0; transform: translate(14%, -14%) rotate(180deg) scale(.94); }
+  to { opacity: .78; transform: translate(0, 0) rotate(180deg) scale(1); }
+}
 .identity-deck { position: relative; z-index: 3; min-height: 510px; display: flex; align-items: center; justify-content: center; perspective: 1400px; isolation: isolate; }
 .identity-card {
   position: absolute; width: min(330px, 75%); min-height: 390px; border: 1px solid rgba(255,255,255,.72);
@@ -406,7 +446,12 @@ h2 em { font-weight: 500; }
 .identity-deck.is-unfolded .card-about { transform: translate3d(-70%, -12px, 90px) rotateY(0) rotateZ(-4deg); }
 .identity-deck.is-unfolded .card-skills { transform: translate3d(0, 18px, 110px) rotateY(0) rotateZ(1deg); }
 .identity-deck.is-unfolded .card-education { transform: translate3d(70%, -8px, 80px) rotateY(0) rotateZ(4deg); }
-.identity-card:hover { box-shadow: 0 32px 65px rgba(25,39,48,.32), inset 0 1px rgba(255,255,255,.9); }
+.identity-card:hover,
+.identity-card:focus-visible {
+  z-index: 12;
+  filter: brightness(1.025);
+  box-shadow: 0 36px 70px rgba(25,39,48,.36), inset 0 1px rgba(255,255,255,.95);
+}
 .card-index { position: relative; z-index: 1; font-size: 9px; letter-spacing: .14em; color: #8d7965; }
 .card-symbol { position: relative; z-index: 1; display: grid; place-items: center; width: 58px; height: 58px; margin: 44px 0 24px; border: 1px solid #c5b39d; border-radius: 50%; font-size: 28px; color: #99785b; }
 .card-title { position: relative; z-index: 1; font: 500 clamp(30px, 3vw, 40px)/.98 var(--serif); letter-spacing: -.04em; }
@@ -456,4 +501,67 @@ h2 em { font-weight: 500; }
 @media (prefers-reduced-motion: reduce) {
   .transition-cloud, .about-scroll-hint span { animation: none !important; }
   .identity-card { transition: none !important; }
+}
+
+
+/* Hover/focus affordance: each profile card rises toward the viewer to signal it can be opened. */
+.identity-deck:not(.is-unfolded) .card-about:hover:not(.is-open),
+.identity-deck:not(.is-unfolded) .card-about:focus-visible:not(.is-open) {
+  transform: translate3d(-24%, -18px, 125px) rotateY(5deg) rotateZ(-4deg) scale(1.025);
+}
+.identity-deck:not(.is-unfolded) .card-skills:hover:not(.is-open),
+.identity-deck:not(.is-unfolded) .card-skills:focus-visible:not(.is-open) {
+  transform: translate3d(5%, -27px, 65px) rotateY(-1deg) rotateZ(1deg) scale(1.025);
+}
+.identity-deck:not(.is-unfolded) .card-education:hover:not(.is-open),
+.identity-deck:not(.is-unfolded) .card-education:focus-visible:not(.is-open) {
+  transform: translate3d(30%, -12px, 0) rotateY(-7deg) rotateZ(6deg) scale(1.025);
+}
+
+.identity-deck.is-unfolded .card-about:hover:not(.is-open),
+.identity-deck.is-unfolded .card-about:focus-visible:not(.is-open) {
+  transform: translate3d(-70%, -32px, 145px) rotateY(0) rotateZ(-2deg) scale(1.025);
+}
+.identity-deck.is-unfolded .card-skills:hover:not(.is-open),
+.identity-deck.is-unfolded .card-skills:focus-visible:not(.is-open) {
+  transform: translate3d(0, -5px, 165px) rotateY(0) rotateZ(0) scale(1.025);
+}
+.identity-deck.is-unfolded .card-education:hover:not(.is-open),
+.identity-deck.is-unfolded .card-education:focus-visible:not(.is-open) {
+  transform: translate3d(70%, -28px, 130px) rotateY(0) rotateZ(2deg) scale(1.025);
+}
+
+@media (max-width: 1000px) {
+  .identity-deck.is-unfolded .card-about:hover:not(.is-open),
+  .identity-deck.is-unfolded .card-about:focus-visible:not(.is-open) {
+    transform: translate3d(-55%, -28px, 115px) rotateY(0) rotateZ(-2deg) scale(1.025);
+  }
+  .identity-deck.is-unfolded .card-skills:hover:not(.is-open),
+  .identity-deck.is-unfolded .card-skills:focus-visible:not(.is-open) {
+    transform: translate3d(0, -6px, 145px) rotateY(0) rotateZ(0) scale(1.025);
+  }
+  .identity-deck.is-unfolded .card-education:hover:not(.is-open),
+  .identity-deck.is-unfolded .card-education:focus-visible:not(.is-open) {
+    transform: translate3d(55%, -25px, 105px) rotateY(0) rotateZ(2deg) scale(1.025);
+  }
+}
+
+@media (max-width: 600px) {
+  .identity-deck.is-unfolded .card-about:hover:not(.is-open),
+  .identity-deck.is-unfolded .card-about:focus-visible:not(.is-open) {
+    transform: translate3d(-24%, -52px, 85px) rotateZ(-4deg) scale(1.015);
+  }
+  .identity-deck.is-unfolded .card-skills:hover:not(.is-open),
+  .identity-deck.is-unfolded .card-skills:focus-visible:not(.is-open) {
+    transform: translate3d(16%, -20px, 120px) rotateZ(2deg) scale(1.015);
+  }
+  .identity-deck.is-unfolded .card-education:hover:not(.is-open),
+  .identity-deck.is-unfolded .card-education:focus-visible:not(.is-open) {
+    transform: translate3d(-2%, 12px, 10px) rotateZ(6deg) scale(1.015);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .identity-deck .identity-card:hover:not(.is-open),
+  .identity-deck .identity-card:focus-visible:not(.is-open) { transform: none !important; }
 }
