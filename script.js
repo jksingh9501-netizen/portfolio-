@@ -256,3 +256,26 @@ window.addEventListener("pointermove", (event) => {
   // Ignore tiny hand jitters; a real move sends the card back to its deck.
   if (Math.hypot(dx, dy) > 24) closeIdentityCards();
 }, { passive: true });
+
+
+/* SELECTED WORKS: subtle pointer tilt on desktop.
+   The card always resets when the pointer leaves, so it never stays crooked. */
+const workCards = document.querySelectorAll(".project-card");
+if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  workCards.forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width;
+      const y = (event.clientY - bounds.top) / bounds.height;
+      const tiltX = (x - 0.5) * 4;
+      const tiltY = (0.5 - y) * 4;
+      card.style.setProperty("--tilt-x", tiltX.toFixed(2) + "deg");
+      card.style.setProperty("--tilt-y", tiltY.toFixed(2) + "deg");
+    });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+    });
+  });
+}
