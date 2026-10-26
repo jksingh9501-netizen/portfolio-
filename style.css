@@ -495,8 +495,6 @@ h2 em { font-weight: 500; }
   .identity-card.is-open { width: 92%; min-height: 390px; transform: translate3d(0, 0, 180px) rotateZ(0); }
   .identity-card.is-open .card-symbol { margin-top: 18px; }
   .about-note { right: 7%; bottom: 2%; font-size: 12px; }
-  .transition-cloud-back { left: -42%; top: -4%; }
-  .transition-cloud-front { right: -42%; top: 1%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .transition-cloud, .about-scroll-hint span { animation: none !important; }
