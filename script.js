@@ -64,7 +64,9 @@ if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
       layer.style.setProperty("--mouse-x", moveX + "px");
       layer.style.setProperty("--mouse-y", moveY + "px");
       layer.style.setProperty("--mouse-depth", depth);
-      layer.style.translate = moveX + "px " + moveY + "px";
+      // Combine mouse movement with the latest scroll offset.
+      const pageScroll = Number.parseFloat(layer.style.getPropertyValue("--page-scroll")) || 0;
+      layer.style.translate = moveX + "px " + (moveY + pageScroll) + "px";
     });
 
     requestAnimationFrame(moveLayers);
@@ -92,7 +94,13 @@ function updateScrollParallax() {
     const sectionProgress = (window.innerHeight - rect.top) * depth * 0.12;
     layer.style.setProperty("--scroll-y", sectionProgress + "px");
     // CSS custom property is used by the stylesheet transform below.
-    layer.style.setProperty("--page-scroll", (scrollY * depth * -0.12) + "px");
+    const pageScroll = scrollY * depth * -0.12;
+    layer.style.setProperty("--page-scroll", pageScroll + "px");
+
+    // Apply the scroll movement immediately, even on touch screens.
+    const mouseX = Number.parseFloat(layer.style.getPropertyValue("--mouse-x")) || 0;
+    const mouseY = Number.parseFloat(layer.style.getPropertyValue("--mouse-y")) || 0;
+    layer.style.translate = mouseX + "px " + (mouseY + pageScroll) + "px";
   });
 
   scrollTicking = false;
