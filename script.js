@@ -194,7 +194,7 @@ if (reduceMotion) {
 }
 
 
-/* ABOUT: cards unfold as the section arrives, then open on click. */
+/* ABOUT: cards unfold on scroll and fold back after mouse movement. */
 const aboutSection = document.querySelector(".about");
 const identityDeck = document.querySelector(".identity-deck");
 const identityCards = document.querySelectorAll(".identity-card");
@@ -211,22 +211,48 @@ if (aboutSection && identityDeck) {
   aboutObserver.observe(aboutSection);
 }
 
-identityCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const wasOpen = card.classList.contains("is-open");
+let openedCardWithMouse = null;
+let pointerPositionAtOpen = null;
+const canHoverWithMouse = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-    identityCards.forEach((otherCard) => {
-      otherCard.classList.remove("is-open");
-      otherCard.setAttribute("aria-expanded", "false");
-      const detail = otherCard.querySelector(".card-detail");
-      if (detail) detail.hidden = true;
-    });
+function closeIdentityCards() {
+  identityCards.forEach((card) => {
+    card.classList.remove("is-open");
+    card.setAttribute("aria-expanded", "false");
+    const detail = card.querySelector(".card-detail");
+    if (detail) detail.hidden = true;
+  });
+  openedCardWithMouse = null;
+  pointerPositionAtOpen = null;
+}
+
+identityCards.forEach((card) => {
+  card.addEventListener("click", (event) => {
+    const wasOpen = card.classList.contains("is-open");
+    closeIdentityCards();
 
     if (!wasOpen) {
       card.classList.add("is-open");
       card.setAttribute("aria-expanded", "true");
       const detail = card.querySelector(".card-detail");
       if (detail) detail.hidden = false;
+
+      // With a mouse, the card folds back once the pointer moves away.
+      // Touch and keyboard users can keep the detail open while reading.
+      if (canHoverWithMouse.matches && event.detail > 0) {
+        openedCardWithMouse = card;
+        pointerPositionAtOpen = { x: event.clientX, y: event.clientY };
+      }
     }
   });
 });
+
+window.addEventListener("pointermove", (event) => {
+  if (!canHoverWithMouse.matches || event.pointerType !== "mouse") return;
+  if (!openedCardWithMouse || !pointerPositionAtOpen) return;
+
+  const dx = event.clientX - pointerPositionAtOpen.x;
+  const dy = event.clientY - pointerPositionAtOpen.y;
+  // Ignore tiny hand jitters; a real move sends the card back to its deck.
+  if (Math.hypot(dx, dy) > 24) closeIdentityCards();
+}, { passive: true });
