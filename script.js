@@ -192,3 +192,41 @@ if (reduceMotion) {
     layer.style.transform = "none";
   });
 }
+
+
+/* ABOUT: cards unfold as the section arrives, then open on click. */
+const aboutSection = document.querySelector(".about");
+const identityDeck = document.querySelector(".identity-deck");
+const identityCards = document.querySelectorAll(".identity-card");
+
+if (aboutSection && identityDeck) {
+  const aboutObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        aboutSection.classList.add("is-visible");
+        identityDeck.classList.add("is-unfolded");
+      }
+    });
+  }, { threshold: 0.18 });
+  aboutObserver.observe(aboutSection);
+}
+
+identityCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    const wasOpen = card.classList.contains("is-open");
+
+    identityCards.forEach((otherCard) => {
+      otherCard.classList.remove("is-open");
+      otherCard.setAttribute("aria-expanded", "false");
+      const detail = otherCard.querySelector(".card-detail");
+      if (detail) detail.hidden = true;
+    });
+
+    if (!wasOpen) {
+      card.classList.add("is-open");
+      card.setAttribute("aria-expanded", "true");
+      const detail = card.querySelector(".card-detail");
+      if (detail) detail.hidden = false;
+    }
+  });
+});
