@@ -20,6 +20,30 @@ const projectCatalog = {
     theme: "tea",
     images: Array.from({ length: 19 }, (_, index) => "assets/Tea%20vs%20Herbal%20Infusion/" + (index + 1) + ".png")
   },
+  nectar: {
+    title: "Nectar PDP",
+    category: "UI DESIGN / PRODUCT DETAIL PAGE",
+    description: "A product-detail-page design exploration for Nectar. Browse the uploaded screens and visual assets below.",
+    preview: "NECTAR\nPDP",
+    theme: "nectar",
+    images: [1,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,23,24,25,26,28].map(file => "assets/nectar%20pdp/" + file + ".jpg")
+  },
+  branddeck: {
+    title: "Brand Deck",
+    category: "BRAND DESIGN / PRESENTATION",
+    description: "A visual brand deck presented page by page. Explore the full set of uploaded presentation spreads below.",
+    preview: "BRAND\nDECK",
+    theme: "branddeck",
+    images: Array.from({ length: 18 }, (_, index) => "assets/brand%20deck/Retail%20Expansion%20Portfolio_page-" + String(index + 1).padStart(4, "0") + ".jpg")
+  },
+  jewellery: {
+    title: "Jewellery Poster",
+    category: "GRAPHIC DESIGN / POSTER",
+    description: "A jewellery poster design from the selected-work archive.",
+    preview: "JEWELLERY\nPOSTER",
+    theme: "jewellery",
+    images: ["assets/jewellery%20poster.jpg"]
+  },
   sword: {
     title: "Sword",
     category: "VISUAL PROJECT / DESIGN STUDY",
@@ -57,7 +81,7 @@ if (downloadLink) {
   downloadLink.setAttribute("download", activeProject.filename);
   downloadLink.setAttribute("aria-label", "Download " + activeProject.filename);
 }
-if (preview) {
+if (downloadLink && !activeProject.archive) {\n  downloadLink.hidden = true;\n}\nif (preview) {
   preview.setAttribute("aria-label", activeProject.title + " project title panel");
 }
 
