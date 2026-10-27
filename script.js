@@ -1,5 +1,5 @@
 /* ==========================================================
-   MANPREET: THE PIXEL GIRL
+   MANPREET PORTFOLIO
    Beginner-friendly interactions:
    1. Scroll reveals
    2. Mouse movement parallax
