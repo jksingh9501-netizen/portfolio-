@@ -1397,3 +1397,71 @@ em, i { font-style: normal !important; }
   .footer-bottom { flex-direction: column; gap: 13px; }
   .footer-note { font-size: 7px; }
 }
+
+
+/* CONTINUOUS PAGE ATMOSPHERE: carry the hero's blue-slate and warm-cloud palette between sections. */
+.about {
+  background: linear-gradient(145deg, #a9c8d0 0%, #829fab 36%, #a5a8b4 66%, #b5949c 100%);
+}
+.about-photo {
+  background:
+    radial-gradient(ellipse at 16% 8%, rgba(255,245,225,.38), transparent 36%),
+    radial-gradient(ellipse at 82% 78%, rgba(235,183,170,.26), transparent 44%),
+    linear-gradient(145deg, #a9c8d0 0%, #829fab 36%, #a5a8b4 66%, #b5949c 100%);
+}
+.about-shade {
+  background: linear-gradient(180deg, rgba(33,48,62,.05), rgba(33,48,62,.24)), radial-gradient(ellipse at center, transparent 30%, rgba(28,42,55,.12) 100%);
+}
+.work {
+  background: linear-gradient(180deg, #b7cbd1 0%, #c4c4c8 38%, #d7c0bd 72%, #d7b7aa 100%);
+}
+.contact {
+  background: linear-gradient(180deg, #d7b7aa 0%, #c5b5bd 42%, #a9c8d0 100%);
+}
+.contact::after {
+  background: linear-gradient(180deg, rgba(215,183,170,.24), rgba(169,200,208,.28)), radial-gradient(ellipse at center, transparent 28%, rgba(28,42,55,.12) 100%);
+}
+/* The dark workflow chapter fades in and out instead of feeling like a separate website. */
+.workflow {
+  background: linear-gradient(180deg, #a9c8d0 0%, #222725 13%, #171917 50%, #252523 87%, #d7b7aa 100%);
+}
+.workflow-background {
+  background: radial-gradient(ellipse at 50% 0%, rgba(169,200,208,.17), transparent 35%), radial-gradient(ellipse at 50% 100%, rgba(215,183,170,.12), transparent 32%), linear-gradient(180deg, #222725, #171917 45%, #252523);
+}
+.workflow-overlay {
+  background: linear-gradient(180deg, rgba(169,200,208,.18), transparent 16%, transparent 82%, rgba(215,183,170,.13));
+}
+
+/* JOURNEY: make the timeline visible on the card face, not only after clicking. */
+.card-education {
+  background: linear-gradient(150deg, rgba(250,249,241,.98), rgba(216,231,231,.98) 58%, rgba(239,218,207,.98));
+  border-color: rgba(255,255,255,.9);
+}
+.card-education .card-symbol { color: #617f8b; }
+.card-education .journey-preview {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 22px;
+  padding: 12px 10px;
+  border: 1px solid rgba(87,119,130,.19);
+  border-radius: 12px;
+  background: rgba(255,255,255,.42);
+}
+.journey-preview-step { display: grid; justify-items: center; gap: 6px; min-width: 0; color: #536b75; font-size: 8px; line-height: 1.2; text-align: center; }
+.journey-preview-step b { display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid rgba(87,119,130,.5); border-radius: 50%; font-size: 9px; font-weight: 700; }
+.journey-preview-line { flex: 1; height: 1px; min-width: 8px; background: linear-gradient(90deg, #8ba8b0, #c6a49a); transform: translateY(-8px); }
+.card-education .journey-detail { text-align: left; }
+.card-education.is-open { width: min(430px, 90%); min-height: 510px; }
+.card-education.is-open .journey-preview { display: none; }
+.journey-detail .journey-dot { color: #5e8491; border-color: rgba(87,119,130,.55); }
+.journey-detail .journey-milestone:not(:last-child)::after { background: linear-gradient(180deg, rgba(87,119,130,.7), rgba(87,119,130,.12)); }
+@media (max-width: 600px) {
+  .card-education .journey-preview { gap: 5px; margin-top: 17px; padding: 10px 7px; }
+  .journey-preview-step { font-size: 7px; }
+  .journey-preview-step b { width: 23px; height: 23px; }
+  .card-education.is-open { width: 92%; min-height: 420px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-scroll-hint span { animation: none !important; }
+}
