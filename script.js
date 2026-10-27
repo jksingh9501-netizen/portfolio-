@@ -255,6 +255,8 @@ identityCards.forEach((card) => {
 window.addEventListener("pointermove", (event) => {
   if (!canHoverWithMouse.matches || event.pointerType !== "mouse") return;
   if (!openedCardWithMouse || !pointerPositionAtOpen) return;
+  // The Journey card contains a readable timeline, so let it stay open while the pointer moves.
+  if (openedCardWithMouse.classList.contains("card-education")) return;
 
   const dx = event.clientX - pointerPositionAtOpen.x;
   const dy = event.clientY - pointerPositionAtOpen.y;
