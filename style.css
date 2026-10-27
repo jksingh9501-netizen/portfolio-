@@ -1465,3 +1465,125 @@ em, i { font-style: normal !important; }
 @media (prefers-reduced-motion: reduce) {
   .about-scroll-hint span { animation: none !important; }
 }
+
+
+/* FINAL VISUAL PASS: one continuous, centered sky gradient across the page. */
+:root {
+  --page-sky: #b8d0d6;
+  --page-slate: #b7c1cc;
+  --page-blush: #d9c2c0;
+  --page-cream: #e3d3c5;
+}
+body {
+  background: radial-gradient(ellipse at 50% 38%, #d8dce0 0%, #c5d5da 30%, #b7cbd2 56%, #cbbec4 78%, #ddc6b9 100%);
+  background-attachment: fixed;
+}
+.about, .work, .contact, .workflow {
+  background: transparent !important;
+}
+.about-photo, .about-shade, .contact-scenery, .contact::after,
+.workflow-background, .workflow-overlay, .workflow-grain {
+  background: transparent !important;
+  opacity: 0 !important;
+}
+.about-intro, .work-intro, .contact-copy, .contact-details,
+.workflow-heading, .workflow-footer p {
+  color: #263640;
+}
+.about-intro h2, .work-intro h2, .contact-copy h2, .workflow-heading h2 {
+  color: #263640;
+}
+.about-intro > p:not(.eyebrow), .work-intro > p:not(.eyebrow),
+.contact-copy > p:not(.eyebrow), .workflow-heading > p:not(.eyebrow) {
+  color: #465861;
+}
+.eyebrow, .workflow-coordinate, .workflow-footer-index {
+  color: #4d626d;
+}
+.eyebrow > span {
+  background: #637f8b;
+}
+.card-education {
+  background: radial-gradient(ellipse at 50% 40%, #dce6e7 0%, #c8dce0 48%, #b7ced4 100%) !important;
+  color: #263640;
+  border-color: rgba(255,255,255,.62);
+}
+.card-education .card-index,
+.card-education .card-title,
+.card-education .card-teaser,
+.card-education .journey-preview-step,
+.card-education .journey-stage strong,
+.card-education .journey-stage small,
+.card-education .detail-label,
+.card-education .detail-foot {
+  color: #263640 !important;
+}
+.card-education .journey-preview {
+  background: transparent;
+  border-color: rgba(38,54,64,.18);
+}
+.card-education .journey-preview-step b,
+.journey-detail .journey-dot {
+  color: #263640;
+  border-color: rgba(38,54,64,.42);
+}
+.journey-detail .journey-milestone:not(:last-child)::after,
+.journey-preview-line {
+  background: rgba(65,93,105,.42);
+}
+.workflow-heading h2 em, .about-intro h2 em, .work-intro h2 em,
+.contact-copy h2 em {
+  color: #496b78;
+}
+.workflow-steps::before {
+  background: rgba(56,78,87,.22);
+}
+.workflow-marker {
+  background: #d5e1e3;
+  border-color: rgba(52,78,89,.25);
+  color: #263640;
+}
+.workflow-marker i {
+  background: #668895;
+}
+.workflow-card {
+  background: rgba(238,243,242,.72);
+  border-color: rgba(54,79,88,.16);
+  color: #263640;
+  box-shadow: 0 14px 40px rgba(54,79,88,.08);
+}
+.workflow-card h3, .workflow-card h3 em,
+.workflow-card > p:not(.workflow-kicker), .workflow-kicker,
+.workflow-kicker span, .workflow-side-note,
+.workflow-tags span, .workflow-more summary, .workflow-more p {
+  color: #263640;
+}
+.workflow-tags span {
+  border-color: rgba(38,54,64,.2);
+  background: rgba(255,255,255,.25);
+}
+.workflow-more {
+  border-color: rgba(38,54,64,.16);
+}
+.workflow-footer {
+  border-color: rgba(38,54,64,.18);
+}
+.contact-details {
+  color: #263640 !important;
+}
+.contact-details > a, .contact-details > p {
+  color: #263640;
+}
+.contact-details .hand-note {
+  color: #496b78;
+}
+.site-footer {
+  background: transparent;
+  color: #263640;
+}
+.site-footer .footer-brand, .site-footer > p,
+.site-footer .footer-note, .site-footer .back-top {
+  color: #263640;
+}
+.site-footer .back-top { border-color: rgba(38,54,64,.4); }
+.site-footer::before { background: linear-gradient(90deg, transparent, rgba(38,54,64,.35), transparent); }
