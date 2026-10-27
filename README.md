@@ -1,4 +1,4 @@
-# Manpreet: The Pixel Girl
+# Manpreet Portfolio
 
 A responsive portfolio website built with **plain HTML, CSS and JavaScript**. There is no framework or build step, so it's a good project to learn from and customise.
 
