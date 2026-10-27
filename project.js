@@ -76,7 +76,7 @@ if (previewTitle) {
   previewTitle.textContent = activeProject.preview;
   previewTitle.setAttribute("aria-label", activeProject.preview.replace(/\n/g, " "));
 }
-if (downloadLink) {
+if (downloadLink && activeProject.archive) {
   downloadLink.href = activeProject.archive;
   downloadLink.setAttribute("download", activeProject.filename);
   downloadLink.setAttribute("aria-label", "Download " + activeProject.filename);
