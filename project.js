@@ -1,9 +1,9 @@
-/* Project detail page: maps the selected card to its archive download. */
+/* Project detail page: maps each selected card to its artwork gallery. */
 const projectCatalog = {
   seven: {
     title: "Seven",
     category: "GRAPHIC DESIGN / VISUAL PROJECT",
-    description: "A visual project from the selected-work archive. Download the source package to explore the original project files.",
+    description: "A visual project from the selected-work archive. Browse the artwork below or download the source package.",
     preview: "SEVEN",
     archive: "assets/Seven%20(1).zip",
     filename: "Seven (1).zip",
@@ -13,9 +13,8 @@ const projectCatalog = {
   tea: {
     title: "Tea vs Herbal Infusion",
     category: "GRAPHIC DESIGN / INFORMATION DESIGN",
-    description: "A graphic project about tea versus herbal infusion. Download the source package to explore the original project files.",
-    preview: "TEA VS
-HERBAL INFUSION",
+    description: "A graphic project about tea versus herbal infusion. Browse the artwork below or download the source package.",
+    preview: "TEA VS\nHERBAL INFUSION",
     archive: "assets/Tea%20vs%20Herbal%20Infusion.zip",
     filename: "Tea vs Herbal Infusion.zip",
     theme: "tea",
@@ -25,17 +24,15 @@ HERBAL INFUSION",
     title: "Nectar PDP",
     category: "UI DESIGN / PRODUCT DETAIL PAGE",
     description: "A product-detail-page design exploration for Nectar. Browse the uploaded screens and visual assets below.",
-    preview: "NECTAR
-PDP",
+    preview: "NECTAR\nPDP",
     theme: "nectar",
     images: [1,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,23,24,25,26,28].map(file => "assets/nectar%20pdp/" + file + ".jpg")
   },
   branddeck: {
     title: "Brand Deck",
     category: "BRAND DESIGN / PRESENTATION",
-    description: "A visual brand deck presented page by page. Explore the full set of uploaded presentation spreads below.",
-    preview: "BRAND
-DECK",
+    description: "A visual brand deck presented page by page. Explore the full set of uploaded presentation pages below.",
+    preview: "BRAND\nDECK",
     theme: "branddeck",
     images: Array.from({ length: 18 }, (_, index) => "assets/brand%20deck/Retail%20Expansion%20Portfolio_page-" + String(index + 1).padStart(4, "0") + ".jpg")
   },
@@ -43,15 +40,14 @@ DECK",
     title: "Jewellery Poster",
     category: "GRAPHIC DESIGN / POSTER",
     description: "A jewellery poster design from the selected-work archive.",
-    preview: "JEWELLERY
-POSTER",
+    preview: "JEWELLERY\nPOSTER",
     theme: "jewellery",
     images: ["assets/jewellery%20poster.jpg"]
   },
   sword: {
     title: "Sword",
     category: "VISUAL PROJECT / DESIGN STUDY",
-    description: "A visual project from the selected-work archive. Download the source package to explore the original project files.",
+    description: "A visual project from the selected-work archive. Browse the artwork below or download the source package.",
     preview: "SWORD",
     archive: "assets/sword.zip",
     filename: "sword.zip",
@@ -60,11 +56,11 @@ POSTER",
   }
 };
 
-const projectKey = new URLSearchParams(window.location.search).get("work") || "seven";
+const params = new URLSearchParams(window.location.search);
+const projectKey = params.get("work") || "seven";
 const activeProject = projectCatalog[projectKey] || projectCatalog.seven;
 
 document.title = activeProject.title + " | Manpreet";
-document.body.classList.add("project-theme-" + activeProject.theme);
 
 const title = document.getElementById("project-title");
 const category = document.getElementById("project-category");
@@ -78,26 +74,26 @@ if (category) category.textContent = activeProject.category;
 if (description) description.textContent = activeProject.description;
 if (previewTitle) {
   previewTitle.textContent = activeProject.preview;
-  previewTitle.setAttribute("aria-label", activeProject.preview.replace(/
-/g, " "));
+  previewTitle.setAttribute("aria-label", activeProject.preview.replace(/\n/g, " "));
 }
-if (downloadLink && activeProject.archive) {
-  downloadLink.href = activeProject.archive;
-  downloadLink.setAttribute("download", activeProject.filename);
-  downloadLink.setAttribute("aria-label", "Download " + activeProject.filename);
-}
-if (downloadLink && !activeProject.archive) {
-  downloadLink.hidden = true;
+if (downloadLink) {
+  if (activeProject.archive) {
+    downloadLink.href = activeProject.archive;
+    downloadLink.setAttribute("download", activeProject.filename);
+    downloadLink.setAttribute("aria-label", "Download " + activeProject.filename);
+    downloadLink.hidden = false;
+  } else {
+    downloadLink.hidden = true;
+  }
 }
 if (preview) {
   preview.setAttribute("aria-label", activeProject.title + " project title panel");
 }
+document.body.classList.add("project-theme-" + activeProject.theme);
 
-
-// Show the real exported artwork already stored in the assets folders.
-// Each image opens its full-size version when clicked.
+// Build the gallery from the selected project's own asset list.
 const gallery = document.getElementById("project-gallery-grid");
-if (gallery && activeProject.images) {
+if (gallery) {
   gallery.replaceChildren();
   activeProject.images.forEach((src, index) => {
     const link = document.createElement("a");
