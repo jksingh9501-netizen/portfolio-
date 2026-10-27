@@ -159,8 +159,10 @@ const activeLinkObserver = new IntersectionObserver((entries) => {
 pageSections.forEach((section) => activeLinkObserver.observe(section));
 
 /* 5) Work filters.
-   Buttons show all projects, only websites, or only graphics.
-   Edit data-category in index.html when adding your own project. */
+   All Work shows the full collection.
+   Websites spotlights the CULT card.
+   Graphics shows every card, including CULT.
+   Keep data-project="cult" on the CULT card in index.html. */
 const filterButtons = document.querySelectorAll(".filter-button");
 const projectCards = document.querySelectorAll(".project-card");
 
@@ -175,7 +177,9 @@ filterButtons.forEach((button) => {
     });
 
     projectCards.forEach((card) => {
-      const matches = selectedFilter === "all" || card.dataset.category === selectedFilter;
+      const matches = selectedFilter === "all"
+        || (selectedFilter === "web" && card.dataset.project === "cult")
+        || selectedFilter === "graphic";
       card.hidden = !matches;
       if (matches) {
         // Re-trigger the gentle entrance animation after filtering.
