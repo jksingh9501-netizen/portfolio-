@@ -58,7 +58,7 @@ img { display: block; max-width: 100%; }
 .hero-sky {
   z-index: -5; background:
     linear-gradient(180deg, rgba(20,20,20,.08), transparent 48%, rgba(20,18,17,.12)),
-    url("assets/hero-bg.png") center center / cover no-repeat,
+    url("assets/bg.jfif") center center / cover no-repeat,
     linear-gradient(135deg, #59616a 0%, #b18a78 46%, #e9ae7e 72%, #383c40 100%);
   transform: scale(1.04);
 }
