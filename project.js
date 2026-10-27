@@ -5,6 +5,7 @@ const projectCatalog = {
     category: "GRAPHIC DESIGN / VISUAL PROJECT",
     description: "A visual project from the selected-work archive. Browse the artwork below or download the source package.",
     preview: "SEVEN",
+    cover: "assets/Seven%20(1)/6.jpg",
     archive: "assets/Seven%20(1).zip",
     filename: "Seven (1).zip",
     theme: "seven",
@@ -36,6 +37,18 @@ const projectCatalog = {
     theme: "branddeck",
     images: Array.from({ length: 18 }, (_, index) => "assets/brand%20deck/Retail%20Expansion%20Portfolio_page-" + String(index + 1).padStart(4, "0") + ".jpg")
   },
+  cult: {
+    title: "CULT",
+    category: "WEB DESIGN / DIGITAL PRODUCT EXPERIENCE",
+    description: "A dark, immersive website concept for CULT, a digital-wellness wearable brand. Explore the visual direction and project imagery below.",
+    preview: "CULT",
+    cover: "assets/cult/1.jpg",
+    archive: "assets/cult.zip",
+    filename: "cult.zip",
+    liveUrl: "https://nimble-lebkuchen-9245b7.netlify.app",
+    theme: "cult",
+    images: ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","5.png","6.png","7.png","8.png","9.png","10.png","11.png","12.png","13.png","Your%20paragraph%20text.png"].map(file => "assets/cult/" + file)
+  },
   jewellery: {
     title: "Jewellery Poster",
     category: "GRAPHIC DESIGN / POSTER",
@@ -49,6 +62,7 @@ const projectCatalog = {
     category: "VISUAL PROJECT / DESIGN STUDY",
     description: "A visual project from the selected-work archive. Browse the artwork below or download the source package.",
     preview: "SWORD",
+    cover: "assets/sword/1.jpg",
     archive: "assets/sword.zip",
     filename: "sword.zip",
     theme: "sword",
@@ -68,6 +82,8 @@ const description = document.getElementById("project-description");
 const previewTitle = document.getElementById("project-preview-title");
 const downloadLink = document.getElementById("project-download");
 const preview = document.getElementById("project-preview");
+const cover = document.getElementById("project-cover");
+const liveLink = document.getElementById("project-live-link");
 
 if (title) title.textContent = activeProject.title;
 if (category) category.textContent = activeProject.category;
