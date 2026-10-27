@@ -10,6 +10,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .project-gallery { padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 5vw, 5rem); background: #f7f4ee; }
+    .project-gallery-heading { max-width: 1200px; margin: 0 auto 1.5rem; display:flex; align-items:end; justify-content:space-between; gap:1rem; }
+    .project-gallery-heading h2 { margin:0; font-size:clamp(1.8rem,4vw,3.5rem); }
+    .project-gallery-heading p { margin:0; color:#68645d; }
+    .project-gallery-grid { max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(.7rem,2vw,1.4rem); }
+    .project-gallery-item { display:block; overflow:hidden; border-radius:12px; background:#e8e2d8; }
+    .project-gallery-item img { display:block; width:100%; height:auto; transition:transform .35s ease; }
+    .project-gallery-item:hover img { transform:scale(1.025); }
+    .project-gallery-item:focus-visible { outline:3px solid #8e5947; outline-offset:4px; }
+    @media(min-width:850px) { .project-gallery-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media(max-width:520px) { .project-gallery-grid { grid-template-columns:1fr; } .project-gallery-heading { align-items:start; flex-direction:column; } }
+  </style>
   <script src="project.js" defer></script>
 </head>
 <body class="project-page-body">
@@ -36,6 +49,17 @@
         <div class="project-preview-orbit" aria-hidden="true"></div>
         <span class="project-preview-caption">SOURCE PACKAGE AVAILABLE</span>
       </div>
+    </section>
+
+    <section class="project-gallery" aria-labelledby="project-gallery-title">
+      <div class="project-gallery-heading">
+        <div>
+          <p class="project-detail-eyebrow">THE ACTUAL ARTWORK</p>
+          <h2 id="project-gallery-title">Explore the project</h2>
+        </div>
+        <p>Tap any image to view it larger.</p>
+      </div>
+      <div class="project-gallery-grid" id="project-gallery-grid"></div>
     </section>
 
     <section class="project-detail-bottom" aria-label="More portfolio projects">
