@@ -14,7 +14,8 @@ const projectCatalog = {
     title: "Tea vs Herbal Infusion",
     category: "GRAPHIC DESIGN / INFORMATION DESIGN",
     description: "A graphic project about tea versus herbal infusion. Download the source package to explore the original project files.",
-    preview: "TEA VS\nHERBAL INFUSION",
+    preview: "TEA VS
+HERBAL INFUSION",
     archive: "assets/Tea%20vs%20Herbal%20Infusion.zip",
     filename: "Tea vs Herbal Infusion.zip",
     theme: "tea",
@@ -24,7 +25,8 @@ const projectCatalog = {
     title: "Nectar PDP",
     category: "UI DESIGN / PRODUCT DETAIL PAGE",
     description: "A product-detail-page design exploration for Nectar. Browse the uploaded screens and visual assets below.",
-    preview: "NECTAR\nPDP",
+    preview: "NECTAR
+PDP",
     theme: "nectar",
     images: [1,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,23,24,25,26,28].map(file => "assets/nectar%20pdp/" + file + ".jpg")
   },
@@ -32,7 +34,8 @@ const projectCatalog = {
     title: "Brand Deck",
     category: "BRAND DESIGN / PRESENTATION",
     description: "A visual brand deck presented page by page. Explore the full set of uploaded presentation spreads below.",
-    preview: "BRAND\nDECK",
+    preview: "BRAND
+DECK",
     theme: "branddeck",
     images: Array.from({ length: 18 }, (_, index) => "assets/brand%20deck/Retail%20Expansion%20Portfolio_page-" + String(index + 1).padStart(4, "0") + ".jpg")
   },
@@ -40,7 +43,8 @@ const projectCatalog = {
     title: "Jewellery Poster",
     category: "GRAPHIC DESIGN / POSTER",
     description: "A jewellery poster design from the selected-work archive.",
-    preview: "JEWELLERY\nPOSTER",
+    preview: "JEWELLERY
+POSTER",
     theme: "jewellery",
     images: ["assets/jewellery%20poster.jpg"]
   },
@@ -74,14 +78,18 @@ if (category) category.textContent = activeProject.category;
 if (description) description.textContent = activeProject.description;
 if (previewTitle) {
   previewTitle.textContent = activeProject.preview;
-  previewTitle.setAttribute("aria-label", activeProject.preview.replace(/\n/g, " "));
+  previewTitle.setAttribute("aria-label", activeProject.preview.replace(/
+/g, " "));
 }
 if (downloadLink && activeProject.archive) {
   downloadLink.href = activeProject.archive;
   downloadLink.setAttribute("download", activeProject.filename);
   downloadLink.setAttribute("aria-label", "Download " + activeProject.filename);
 }
-if (downloadLink && !activeProject.archive) {\n  downloadLink.hidden = true;\n}\nif (preview) {
+if (downloadLink && !activeProject.archive) {
+  downloadLink.hidden = true;
+}
+if (preview) {
   preview.setAttribute("aria-label", activeProject.title + " project title panel");
 }
 
