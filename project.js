@@ -7,7 +7,8 @@ const projectCatalog = {
     preview: "SEVEN",
     archive: "assets/Seven%20(1).zip",
     filename: "Seven (1).zip",
-    theme: "seven"
+    theme: "seven",
+    images: ["6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"].map(file => "assets/Seven%20(1)/" + file)
   },
   tea: {
     title: "Tea vs Herbal Infusion",
@@ -16,7 +17,8 @@ const projectCatalog = {
     preview: "TEA VS\nHERBAL INFUSION",
     archive: "assets/Tea%20vs%20Herbal%20Infusion.zip",
     filename: "Tea vs Herbal Infusion.zip",
-    theme: "tea"
+    theme: "tea",
+    images: Array.from({ length: 19 }, (_, index) => "assets/Tea%20vs%20Herbal%20Infusion/" + (index + 1) + ".png")
   },
   sword: {
     title: "Sword",
@@ -25,7 +27,8 @@ const projectCatalog = {
     preview: "SWORD",
     archive: "assets/sword.zip",
     filename: "sword.zip",
-    theme: "sword"
+    theme: "sword",
+    images: Array.from({ length: 9 }, (_, index) => "assets/sword/" + (index + 1) + ".jpg")
   }
 };
 
@@ -56,4 +59,30 @@ if (downloadLink) {
 }
 if (preview) {
   preview.setAttribute("aria-label", activeProject.title + " project title panel");
+}
+
+
+// Show the real exported artwork already stored in the assets folders.
+// Each image opens its full-size version when clicked.
+const gallery = document.getElementById("project-gallery-grid");
+if (gallery && activeProject.images) {
+  gallery.replaceChildren();
+  activeProject.images.forEach((src, index) => {
+    const link = document.createElement("a");
+    link.className = "project-gallery-item";
+    link.href = src;
+    link.target = "_blank";
+    link.rel = "noreferrer";
+    link.setAttribute("aria-label", "Open " + activeProject.title + " image " + (index + 1) + " full size");
+
+    const image = document.createElement("img");
+    image.src = src;
+    image.alt = activeProject.title + " artwork, image " + (index + 1);
+    image.loading = index < 3 ? "eager" : "lazy";
+    image.decoding = "async";
+    image.onerror = () => link.remove();
+
+    link.appendChild(image);
+    gallery.appendChild(link);
+  });
 }
