@@ -1315,3 +1315,85 @@ h2 em { font-weight: 500; }
 .journey-detail .journey-stage { display: grid; gap: 4px; padding-top: 2px; }
 .journey-detail .journey-stage strong { font-size: 12px; font-weight: 600; color: var(--cream); }
 .journey-detail .journey-stage small { color: #c5bdb2; font-size: 11px; line-height: 1.6; font-weight: 400; }
+
+
+/* GLOBAL TYPE RULE: keep all text upright, including text wrapped in emphasis tags. */
+em, i { font-style: normal !important; }
+
+/* FOOTER: a centered closing scene, with a small graphic accent. */
+.site-footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow: hidden;
+  padding: 58px var(--page-pad) 25px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(212,185,154,.12), transparent 48%), #121312;
+  color: #d8d1c7;
+  text-align: center;
+}
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(220px, 42vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, #c8a77f, transparent);
+}
+.footer-spark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 3px;
+  border: 1px solid rgba(212,185,154,.38);
+  border-radius: 50%;
+  color: #d4b99a;
+  font-size: 18px;
+}
+.site-footer .footer-brand {
+  color: #f3eee5;
+  font-size: clamp(20px, 3vw, 29px);
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+.site-footer > p {
+  margin: 0;
+  color: #bcb4a8;
+  font-size: 12px;
+  line-height: 1.7;
+  opacity: 1;
+}
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 28px;
+  width: 100%;
+  margin-top: 25px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(216,209,199,.13);
+}
+.footer-note {
+  color: #8e887f;
+  font-size: 8px;
+  letter-spacing: .16em;
+}
+.site-footer .back-top {
+  padding-bottom: 4px;
+  border-color: rgba(212,185,154,.55);
+  color: #e1d4c3;
+  font-size: 10px;
+  transition: color .2s, border-color .2s;
+}
+.site-footer .back-top:hover { color: #fff; border-color: #fff; }
+@media (max-width: 600px) {
+  .site-footer { padding-top: 45px; }
+  .footer-bottom { flex-direction: column; gap: 13px; }
+  .footer-note { font-size: 7px; }
+}
