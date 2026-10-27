@@ -1305,3 +1305,13 @@ h2 em { font-weight: 500; }
   .workflow-orbit .orbit { animation: none !important; }
   .workflow-card, .workflow-marker i, .workflow-more summary span { transition: none !important; }
 }
+
+
+/* JOURNEY CARD: compact visual milestones, no heavy animation. */
+.journey-detail .journey-milestones { display: grid; gap: 0; margin: 16px 0 8px; }
+.journey-detail .journey-milestone { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; position: relative; padding: 0 0 17px; }
+.journey-detail .journey-milestone:not(:last-child)::after { content: ""; position: absolute; left: 13px; top: 28px; bottom: 2px; width: 1px; background: linear-gradient(180deg, rgba(217,154,105,.7), rgba(217,154,105,.12)); }
+.journey-detail .journey-dot { position: relative; z-index: 1; display: grid; place-items: center; width: 27px; height: 27px; border: 1px solid rgba(217,154,105,.65); border-radius: 50%; color: var(--orange); font-size: 9px; font-weight: 600; }
+.journey-detail .journey-stage { display: grid; gap: 4px; padding-top: 2px; }
+.journey-detail .journey-stage strong { font-size: 12px; font-weight: 600; color: var(--cream); }
+.journey-detail .journey-stage small { color: #c5bdb2; font-size: 11px; line-height: 1.6; font-weight: 400; }
