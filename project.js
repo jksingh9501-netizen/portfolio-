@@ -16,6 +16,7 @@ const projectCatalog = {
     category: "GRAPHIC DESIGN / INFORMATION DESIGN",
     description: "A graphic project about tea versus herbal infusion. Browse the artwork below or download the source package.",
     preview: "TEA VS\nHERBAL INFUSION",
+    cover: "assets/Tea%20vs%20Herbal%20Infusion/2.png",
     archive: "assets/Tea%20vs%20Herbal%20Infusion.zip",
     filename: "Tea vs Herbal Infusion.zip",
     theme: "tea",
@@ -26,6 +27,7 @@ const projectCatalog = {
     category: "UI DESIGN / PRODUCT DETAIL PAGE",
     description: "A product-detail-page design exploration for Nectar. Browse the uploaded screens and visual assets below.",
     preview: "NECTAR\nPDP",
+    cover: "assets/nectar%20pdp/1.jpg",
     theme: "nectar",
     images: [1,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,23,24,25,26,28].map(file => "assets/nectar%20pdp/" + file + ".jpg")
   },
@@ -54,6 +56,7 @@ const projectCatalog = {
     category: "GRAPHIC DESIGN / POSTER",
     description: "A jewellery poster design from the selected-work archive.",
     preview: "JEWELLERY\nPOSTER",
+    cover: "assets/jewellery%20poster.jpg",
     theme: "jewellery",
     images: ["assets/jewellery%20poster.jpg"]
   },
@@ -102,8 +105,14 @@ if (downloadLink) {
     downloadLink.hidden = true;
   }
 }
-if (preview) {
-  preview.setAttribute("aria-label", activeProject.title + " project title panel");
+if (preview) preview.setAttribute("aria-label", activeProject.title + " project cover");
+if (cover) {
+  cover.src = activeProject.cover || activeProject.images[0];
+  cover.alt = activeProject.title + " project cover page";
+}
+if (liveLink) {
+  if (activeProject.liveUrl) { liveLink.href = activeProject.liveUrl; liveLink.hidden = false; }
+  else liveLink.hidden = true;
 }
 document.body.classList.add("project-theme-" + activeProject.theme);
 
