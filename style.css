@@ -1,5 +1,5 @@
 /* ==========================================================
-   MANPREET: THE PIXEL GIRL
+   MANPREET PORTFOLIO
    This stylesheet is intentionally organised by page section.
    Change the colour variables below to restyle the whole site.
    ========================================================== */
@@ -13,7 +13,7 @@
   --muted: #b8b0a5;
   --orange: #d99a69;
   --blue: #a9dce0;
-  --serif: "Playfair Display", Georgia, serif;
+  --serif: "DM Sans", Arial, sans-serif;
   --sans: "DM Sans", Arial, sans-serif;
   --page-pad: clamp(22px, 5vw, 76px);
   --header-height: 82px;
