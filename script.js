@@ -47,16 +47,10 @@ let currentX = 0;
 let currentY = 0;
 
 if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
-  window.addEventListener("pointermove", (event) => {
-    pointerX = (event.clientX / window.innerWidth - 0.5) * 2;
-    pointerY = (event.clientY / window.innerHeight - 0.5) * 2;
-  }, { passive: true });
-
-  // Smoothly ease towards the pointer position instead of snapping.
+  let pointerFrame = 0;
   function moveLayers() {
-    currentX += (pointerX - currentX) * 0.055;
-    currentY += (pointerY - currentY) * 0.055;
-
+    currentX += (pointerX - currentX) * 0.12;
+    currentY += (pointerY - currentY) * 0.12;
     depthLayers.forEach((layer) => {
       const depth = Number(layer.dataset.depth) || 0;
       const moveX = currentX * depth * 34;
@@ -64,14 +58,21 @@ if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
       layer.style.setProperty("--mouse-x", moveX + "px");
       layer.style.setProperty("--mouse-y", moveY + "px");
       layer.style.setProperty("--mouse-depth", depth);
-      // Combine mouse movement with the latest scroll offset.
       const pageScroll = Number.parseFloat(layer.style.getPropertyValue("--page-scroll")) || 0;
       layer.style.translate = moveX + "px " + (moveY + pageScroll) + "px";
     });
-
-    requestAnimationFrame(moveLayers);
+    // Keep animating only while the pointer is still easing into place.
+    if (Math.abs(pointerX - currentX) > 0.002 || Math.abs(pointerY - currentY) > 0.002) {
+      pointerFrame = requestAnimationFrame(moveLayers);
+    } else {
+      pointerFrame = 0;
+    }
   }
-  requestAnimationFrame(moveLayers);
+  window.addEventListener("pointermove", (event) => {
+    pointerX = (event.clientX / window.innerWidth - 0.5) * 2;
+    pointerY = (event.clientY / window.innerHeight - 0.5) * 2;
+    if (!pointerFrame) pointerFrame = requestAnimationFrame(moveLayers);
+  }, { passive: true });
 }
 
 /* 3) Scroll parallax.
